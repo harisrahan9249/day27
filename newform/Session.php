@@ -20,6 +20,8 @@ class Session
 
     public $data = [];
 
+    public $old_request = [];
+
     protected function __construct()
     {
         session_start();
@@ -29,6 +31,10 @@ class Session
         if (isset($_SESSION['flashed_data'])) {
             $this->data = array_merge($this->data, $_SESSION['flashed_data']);
             unset($_SESSION['flashed_data']);
+        }
+        if (isset($_SESSION['flashed_request'])) {
+            $this->old_request = $_SESSION['flashed_request'];
+            unset($_SESSION['flashed_request']);
         }
     }
 
@@ -51,5 +57,13 @@ class Session
         }
 
         $_SESSION['flashed_data'][$key] = $value;
+    }
+    public function flashRequest()
+    {
+        $_SESSION['flashed_request'] = $_REQUEST;
+    }
+    public function old($key,$default = null)
+    {
+        return $this->old_request[$key] ?? $default;
     }
 }

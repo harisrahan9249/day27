@@ -46,6 +46,7 @@ if (!$valid) {
     Session::instance()->flash('errors', $errors);
 
     // flash the (bad) request data
+    Session::instance()->flashRequest();
 
     // redirect back
     if ($id) {

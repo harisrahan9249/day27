@@ -5,6 +5,7 @@
 require_once 'DBBlackbox.php';
 require_once 'Album.php';
 require_once 'Session.php';
+require_once 'helpers.php';
 
 $success_message = Session::instance()->get('success_message');
 $errors          = Session::instance()->get('errors', []);
@@ -45,22 +46,22 @@ if ($id) {
 <?php endif; ?>
 
     Title:<br>
-    <input type="text" name="title" value="<?= $album->title ?>">
+    <input type="text" name="title" value="<?=old('album', $album->title )?>">
     <br>
     <br>
 
     Cover image:<br>
-    <input type="text" name="cover_image" value="<?= $album->cover_image ?>">
+    <input type="text" name="cover_image" value="<?=old('cover_image', $album->cover_image )?>">
     <br>
     <br>
 
     Author:<br>
-    <input type="text" name="author" value="<?= $album->author ?>">
+    <input type="text" name="author" value="<?= old('author',$album->author) ?>">
     <br>
     <br>
 
     Year of release:<br>
-    <input type="year" name="year_of_release" value="<?= $album->year_of_release ?>">
+    <input type="year" name="year_of_release" value="<?= old('year_of_release',$album->year_of_release )?>">
     <br>
     <br>
 
